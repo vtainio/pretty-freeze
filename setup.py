@@ -12,13 +12,12 @@ def setup_package():
         name='pretty-freeze',
         description='Pip freeze that shows detailed descriptions of the packages.',
         long_description=get_long_description(),
-        version='0.1.0',
+        version='0.0.1',
         url='https://github.com/Wisheri/pretty-freeze',
         author='Ville Tainio',
         author_email='tainio.ville@gmail.com',
         license='MIT',
-        keywords='freeze, pip, pretty, information, meta',
-        install_requires=[''],
+        keywords='freeze pip pretty information meta',
         packages=['pretty_freeze'],
         entry_points={
             'console_scripts': ['pretty-freeze = pretty_freeze.freeze:run']
@@ -28,8 +27,12 @@ def setup_package():
             'Intended Audience :: Developers',
             'Topic :: Software Development :: Build Tools',
             'License :: OSI Approved :: MIT License',
+            'Programming Language :: Python :: 2',
+            'Programming Language :: Python :: 2.6',
             'Programming Language :: Python :: 2.7',
             'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.2',
+            'Programming Language :: Python :: 3.3',
             'Programming Language :: Python :: 3.4',
         ]
     )
