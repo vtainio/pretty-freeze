@@ -26,19 +26,29 @@ class Package(object):
         pkg = pkgs[0]
         try:
             for line in pkg.get_metadata_lines('PKG-INFO'):
-                try:
-                    (k, v) = line.split(': ', 1)
-                    if k == 'License':
-                        self.license = v
-                    elif k == 'Author':
-                        self.author = v
-                    elif k == 'Home-page':
-                        self.homepage = v
-                except ValueError as e:
-                    pass
-
-        except IOError as e:
+                self.extract_infromation_from_line(line)
+        except (IOError, KeyError) as e:
             pass
+
+        try:
+            for line in pkg.get_metadata_lines('METADATA'):
+                self.extract_infromation_from_line(line)
+        except (IOError, KeyError) as e:
+            pass
+
+    def extract_infromation_from_line(self, line):
+        try:
+            (k, v) = line.split(': ', 1)
+            if k == 'License':
+                self.license = v
+            elif k == 'Author':
+                self.author = v
+            elif k == 'Home-page':
+                self.homepage = v
+        except ValueError as e:
+                pass
+
+
 
     def write(self):
         self.get_package_information()
@@ -46,11 +56,11 @@ class Package(object):
         # Print the information if it exists.
         if self.name:
             sys.stdout.write('# {}\n'.format(self.name))
-        if self.license is not None:
+        if self.license is not None and self.license != 'UNKNOWN':
             sys.stdout.write('# License: {}\n'.format(self.license))
-        if self.homepage is not None:
+        if self.homepage is not None and self.homepage != 'UNKNOWN':
             sys.stdout.write('# Homepage: {}\n'.format(self.homepage))
-        if self.author is not None:
+        if self.author is not None and self.author != 'UNKNOWN':
             sys.stdout.write('# Author: {}\n'.format(self.author))
 
         if self.name and self.version:
@@ -61,7 +71,7 @@ def get_packages():
     freeze = subprocess.check_output(['pip', 'freeze'])
     packages = []
 
-    for package in freeze.split('\n'):
+    for package in freeze.decode('utf-8').split('\n'):
         splitted = package.split('==')
 
         # Don't include this package in the freeze.
