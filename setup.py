@@ -12,7 +12,7 @@ def setup_package():
         name='pretty-freeze',
         description='Pip freeze that shows detailed descriptions of the packages.',
         long_description=get_long_description(),
-        version='0.0.1',
+        version='0.1.0',
         url='https://github.com/Wisheri/pretty-freeze',
         author='Ville Tainio',
         author_email='tainio.ville@gmail.com',

@@ -48,8 +48,6 @@ class Package(object):
         except ValueError as e:
                 pass
 
-
-
     def write(self):
         self.get_package_information()
 

@@ -54,7 +54,7 @@ Usage
 
 You can run the program with::
 
-  pretty-freeze
+  $ pretty-freeze
 
 This package won't show itself in the freeze, so no unnecessary requirements will be added. You can use it with a requirements.txt file just as you would use pip freeze.
 
@@ -63,7 +63,7 @@ Install
 -------
 ::
 
-  pip install pretty-freeze
+  $ pip install pretty-freeze
 
 -----
 Legal
